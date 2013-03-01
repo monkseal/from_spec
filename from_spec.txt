@@ -1,0 +1,20 @@
+*FromSpec.vim* Vimscript for creating jumping between spec and class files
+
+Usage                                          |from-spec-vim-usage| 
+License                                        |from-spec-vim-license| 
+
+==============================================================================
+USAGE                                                 *:FromSpec*
+*from-spec-vim-usage* 
+
+- When in a class file, jump to spec file
+
+    :ToSpec
+<
+- When a spec file,  jump to class file.
+
+    :FromSpec
+
+*from-spec-license*
+Copyright (c) Kevin English.  Distributed under the same terms as Vim itself.
+See |license|.

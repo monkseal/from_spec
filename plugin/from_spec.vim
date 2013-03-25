@@ -9,6 +9,7 @@ let g:loaded_from_spec = 1
 if !has("ruby")
   echohl ErrorMsg
   echon "Sorry, FromSpec requires ruby support."
+  :ruby print "Hello"
   finish
 endif
 
@@ -26,50 +27,8 @@ endfunction
 
 ruby << EOF
 
-class CorrespondingSpecFile
-  attr_reader :file
-
-  def initialize(file)
-    @file = file
-  end
-
-  def basename
-    File.basename(file)
-  end
-
-  def spec_name
-    basename.sub(/\.rb/, '_spec.rb')
-  end
-
-  def spec_path
-    Dir.glob('spec/unit/**/*_spec.rb').detect do|f|
-      f.match(/\/#{spec_name}$/)
-    end
-  end
-end
-
-class CorrespondingClassFile
-  attr_reader :file
-
-  def initialize(file)
-    @file = file
-  end
-
-  def basename
-    File.basename(file)
-  end
-
-  def class_file_name
-    basename.sub(/_spec\.rb/, '.rb')
-  end
-
-  def class_file_path
-    Dir.glob('app/**/*.rb').detect do|f|
-      f.match(/\/#{class_file_name}$/)
-    end
-  end
-end
-
+require '/Users/kenglish/.janus/from_spec/plugin/corresponding_spec_file.rb'
+require '/Users/kenglish/.janus/from_spec/plugin/corresponding_class_file.rb'
 
 def current_file
   VIM::evaluate('@%')

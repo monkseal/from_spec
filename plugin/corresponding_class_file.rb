@@ -10,10 +10,6 @@ class CorrespondingClassFile < CorrespondingBase
     matches = Dir.glob('app/**/*.rb').select do|f|
       f.match(/\/#{class_file_name}$/)
     end
-
-    #    matches = Dir.glob('spec/**/*_spec.rb').select do|f|
-    #      f.match(/\/#{spec_name}$/)
-    #    end
     handle_matches(matches)
   end
 end

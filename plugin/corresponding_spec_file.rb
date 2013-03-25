@@ -1,21 +1,15 @@
-class CorrespondingSpecFile
-  attr_reader :file
+require File.join(File.dirname(__FILE__), 'corresponding_base')
 
-  def initialize(file)
-    @file = file
-  end
-
-  def basename
-    File.basename(file)
-  end
-
+class CorrespondingSpecFile < CorrespondingBase
   def spec_name
     basename.sub(/\.rb/, '_spec.rb')
   end
 
   def spec_path
-    Dir.glob('spec/unit/**/*_spec.rb').detect do|f|
+    matches = Dir.glob('spec/**/*_spec.rb').select do|f|
       f.match(/\/#{spec_name}$/)
     end
+    handle_matches(matches)
   end
+
 end

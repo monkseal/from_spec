@@ -7,6 +7,7 @@ in a rails app.
 * From your class file, type `:ToSpec`
 * From your spec file, type `:FromSpec`
 
-Note, this currently makes assumptions about your Rails app, namely,
-that all your unit tests are under `/spec/unit`. We'll make this
-configurable in the future.
+Note, this currently makes assumptions about your Rails `app`, namely,
+that all your specs tests are under `/spec`.
+
+We'll make this configurable in the future.

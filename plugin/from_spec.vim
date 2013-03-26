@@ -13,7 +13,6 @@ if !has("ruby")
   finish
 endif
 
-
 function! ToSpec()
   :ruby to_spec
 endfunction
@@ -27,8 +26,11 @@ endfunction
 
 ruby << EOF
 
-require '/Users/kenglish/.janus/from_spec/plugin/corresponding_spec_file.rb'
-require '/Users/kenglish/.janus/from_spec/plugin/corresponding_class_file.rb'
+vimscript_file = VIM::evaluate('expand("<sfile>")')
+vimscript_dir  = File.dirname(vimscript_file)
+
+require File.join(vimscript_dir,'corresponding_spec_file.rb')
+require File.join(vimscript_dir,'corresponding_class_file.rb')
 
 def current_file
   VIM::evaluate('@%')

@@ -17,12 +17,22 @@ function! ToSpec()
   :ruby to_spec
 endfunction
 
+function! ToSpecSp()
+  :ruby to_spec_and_split
+endfunction
+
 function! FromSpec()
   :ruby from_spec
 endfunction
 
+function! FromSpecSp()
+  :ruby from_spec_and_split
+endfunction
+
 :com -nargs=0 FromSpec call FromSpec()
 :com -nargs=0 ToSpec call ToSpec()
+:com -nargs=0 FromSpecsp call FromSpecSp()
+:com -nargs=0 ToSpecsp call ToSpecSp()
 
 ruby << EOF
 
@@ -36,24 +46,34 @@ def current_file
   VIM::evaluate('@%')
 end
 
-def to_spec
+def to_spec(split=false)
   cs = CorrespondingSpecFile.new(current_file)
   path = cs.spec_path
   if path
-    VIM::command("e #{path}\"")
+    cmd = split ? 'sp' : 'e'
+    VIM::command("#{cmd} #{path}\"")
   else
     VIM::command("echo \"Spec not Found\"")
   end
 end
 
-def from_spec
+def from_spec(split=false)
   cs = CorrespondingClassFile.new(current_file)
   path = cs.class_file_path
   if path
-    VIM::command("e #{path}\"")
+    cmd = split ? 'sp' : 'e'
+    VIM::command("#{cmd} #{path}\"")
   else
     VIM::command("echo \"Class File not Found\"")
   end
+end
+
+def to_spec_and_split
+  to_spec(true)
+end
+
+def from_spec_and_split
+  from_spec(true)
 end
 
 EOF

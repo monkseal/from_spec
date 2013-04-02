@@ -22,8 +22,8 @@ files.
 
 We'll make this configurable in the future.
 
-[ ] Refactor Ruby method in corresponding_base.rb perhaps using a better
+- [ ] Refactor Ruby method in corresponding_base.rb perhaps using a better
 stategy to match the spec/class files.
-[ ] Make per project/directoy configurable, allow user to set src/spec
+- [ ] Make per project/directoy configurable, allow user to set src/spec
 directory.
-[ ] Match files other than Ruby/CoffeeScript.
+- [ ] Match files other than Ruby/CoffeeScript.
